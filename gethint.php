@@ -35,6 +35,7 @@ $a[] = "Lotus";
 $q = $_REQUEST["q"];
 
 $hint = "";
+$option = "";
 
 // lookup all hints from array if $q is different from ""
 if ($q !== "") {
@@ -44,13 +45,19 @@ if ($q !== "") {
     if (stristr($q, substr($name, 0, $len))) {
       if ($hint === "") {
         $hint = $name;
+
       } else {
         $hint .= ", $name";
+      }
+      if ($option === "") {
+        $option = "<option>".$name."</option>";
+      } else {
+        $option .= "<option>".$name."</option>";
       }
     }
   }
 }
 
 // Output "no suggestion" if no hint was found or output correct values
-echo $hint === "" ? "no suggestion" : $hint;
+echo $option === "" ? "<option>No Brand found</option>" : $option;
 ?>
